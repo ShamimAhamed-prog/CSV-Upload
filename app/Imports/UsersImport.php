@@ -3,6 +3,7 @@
 namespace App\Imports;
 
 use App\Models\ImportUser;
+use Illuminate\Bus\Batch;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
@@ -16,14 +17,19 @@ class UsersImport implements ToModel, WithHeadingRow
     public function model(array $row)
     {
         return new ImportUser([
-            'ticker'=>$row['ticker'],
-            'date'=>$row['date'],
+            'market_id'=>NULL,
+            'instrument_id'=>$row['instrument_id'],
+            'date'=>Null,
             'open'=>$row['open'],
             'high'=>$row['high'],
             'low'=>$row['low'],
             'close'=>$row['close'],
             'volume'=>$row['volume'],
-            'open_interest'=>$row['open_interest'],
+            'trade'=>NULL,
+            'tradevalues'=>NULL,
+            'updated'=>NULL,
+            'market_instrument'=>$row['ticker'],
+            'batch'=>NULL,
         ]);
     }
 }

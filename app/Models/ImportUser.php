@@ -10,13 +10,16 @@ class ImportUser extends Model
 {
     use HasFactory;
     
-    protected $table="users";
-    
-    protected $fillable=['ticker','date','open','high','low','close','volume','open_interest'];
+    protected $table="data_banks_eods";
+    public $timestamps =false;
+    protected $fillable=['market_id','instrument_id','open','high','low','close','volume','trade','tradevalues','date','updated','market_instrument','batch'];
     
     public static function getUser()
     {
-            $records=DB::table('users')->select('id','ticker','date','open','high','low','close','volume','open_interest');
+            $records=DB::table('data_banks_eods')
+            ->join('instruments', 'data_banks_eods.instrument_id', '=', 'instruments.id')
+            ->select('market_id','instrument_id','open','high','low','close','volume','trade','tradevalues','date','updated','market_instrument','batch');
             return $records;
+
     }
 }
