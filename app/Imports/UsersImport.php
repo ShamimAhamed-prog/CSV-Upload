@@ -17,19 +17,19 @@ class UsersImport implements ToModel, WithHeadingRow
     public function model(array $row)
     {
         return new ImportUser([
-            'market_id'=>NULL,
+            'market_id'=>$row['market_id'],
             'instrument_id'=>$row['instrument_id'],
-            'date'=>Null,
+            'date'=>$row['date'],
             'open'=>$row['open'],
             'high'=>$row['high'],
             'low'=>$row['low'],
             'close'=>$row['close'],
             'volume'=>$row['volume'],
-            'trade'=>NULL,
-            'tradevalues'=>NULL,
-            'updated'=>NULL,
-            'market_instrument'=>$row['ticker'],
-            'batch'=>NULL,
+            'trade'=>$row['trade'],
+            'tradevalues'=>$row['tradevalues'],
+            'updated'=>$row['updated'],
+            'market_instrument'=>$row['market_instrument'],
+            'batch'=>$row['batch'],
         ]);
     }
 }

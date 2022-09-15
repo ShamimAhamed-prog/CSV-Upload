@@ -15,11 +15,9 @@ class ImportUser extends Model
     protected $fillable=['market_id','instrument_id','open','high','low','close','volume','trade','tradevalues','date','updated','market_instrument','batch'];
     
     public static function getUser()
-    {
+    {      
             $records=DB::table('data_banks_eods')
-            ->join('instruments', 'data_banks_eods.instrument_id', '=', 'instruments.id')
             ->select('market_id','instrument_id','open','high','low','close','volume','trade','tradevalues','date','updated','market_instrument','batch');
             return $records;
-
     }
 }
